@@ -22,10 +22,11 @@ if __name__ == '__main__':
                         quantity INTEGER,
                         price INTEGER
                      )''')
-    cursor.execute("INSERT INTO book  VALUES (1,'How to get a good grade in DOS in 40 minutes a day','distributed systems',20,30)")
-    cursor.execute("INSERT INTO book  VALUES (2,'RPCs for Noobs','distributed systems',40,40)")
-    cursor.execute("INSERT INTO book VALUES (3,'Xen and the Art of Surviving Undergraduate School','undergraduate school',30,30)")
-    cursor.execute("INSERT INTO book VALUES (4,'Cooking for the Impatient Undergrad','undergraduate school',40,40)")
+    # cursor.execute("INSERT INTO book  VALUES (1,'How to get a good grade in DOS in 40 minutes a day','distributed systems',20,30)")
+    # cursor.execute("INSERT INTO book  VALUES (2,'RPCs for Noobs','distributed systems',40,40)")
+    # cursor.execute("INSERT INTO book VALUES (3,'Xen and the Art of Surviving Undergraduate School','undergraduate school',30,30)")
+    # cursor.execute("INSERT INTO book VALUES (4,'Cooking for the Impatient Undergrad','undergraduate school',40,40)")
+    conn.commit()
     cursor.execute("SELECT * FROM book")
     data = cursor.fetchall()
     for row in data:
