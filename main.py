@@ -18,7 +18,7 @@ if __name__ == '__main__':
     cursor.execute('''CREATE TABLE IF NOT EXISTS book (
                         id INTEGER PRIMARY KEY,
                         title TEXT,
-                        catalog TEXT,
+                        topic TEXT,
                         quantity INTEGER,
                         price INTEGER
                      )''')
