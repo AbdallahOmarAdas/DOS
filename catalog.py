@@ -17,11 +17,13 @@ def queryInfo(itemNumber):
             "quantity": row[1],
             "price": row[2]
         }
+        print(book_data)
         return jsonify(book_data)
     else:
-        resource = jsonify({"error": "book not found"}, 404)
-        resource.status_code = 404
-        return resource
+        msg = jsonify({"error": "book not found"}, 404)
+        msg.status_code = 404
+        print(msg)
+        return msg
 
 
 @app.route('/search/<topic>')
@@ -31,9 +33,10 @@ def querySearch(topic):
     print(rows)
     user_list = []
     if len(rows) == 0:
-        resource = jsonify({"error": "there is no books belong this topic"}, 404)
-        resource.status_code = 404
-        return resource
+        msg = jsonify({"error": "there is no books belong this topic"}, 404)
+        msg.status_code = 404
+        print(msg)
+        return msg
     else:
         for row in rows:
             book_data = {
@@ -41,24 +44,25 @@ def querySearch(topic):
                 "title": row[1]
             }
             user_list.append(book_data)
-
+        print(user_list)
         return jsonify(user_list)
 
-@app.route('/update/<itemNumber>')
+
+@app.route('/update/<itemNumber>', methods=['PUT'])
 def queryUpdate(itemNumber):
-    cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
-    conn.commit()
     cursor.execute("SELECT title, quantity, price FROM book WHERE id = ?", (itemNumber,))
     row = cursor.fetchone()
-    print(row)
-    if row:
-        book_data = {
-            "title": row[0],
-            "quantity": row[1],
-            "price": row[2]
-        }
-        return jsonify(book_data)
+    if row[1] >= 1:
+        cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
+        conn.commit()
+        print("{'msg': 'The book was purchased successfully'}")
+        return jsonify(
+            {'msg': 'The book was purchased successfully'})
     else:
-        return jsonify({"error": "book not found"}, 404)
+        print("{'error': 'can not purchase this book because it out of stock.'}")
+        return jsonify(
+            {'error': 'can not purchase this book because it out of stock.'})
+
+
 if __name__ == '__main__':
     app.run(debug=True)
