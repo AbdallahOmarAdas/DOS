@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask,Response, jsonify
 import sqlite3
 
 app = Flask(__name__)
@@ -19,7 +19,9 @@ def queryInfo(itemNumber):
         }
         return jsonify(book_data)
     else:
-        return jsonify({"error": "book not found"}, 404)
+        resource = jsonify({"error": "book not found"}, 404)
+        resource.status_code = 404
+        return resource
 
 
 @app.route('/search/<topic>')
@@ -29,7 +31,9 @@ def querySearch(topic):
     print(rows)
     user_list = []
     if rows == 0:
-        return jsonify({"error": "there is no books belong this topic"}, 404)
+        resource = jsonify({"error": "there is no books belong this topic"}, 404)
+        resource.status_code = 404
+        return resource
     else:
         for row in rows:
             book_data = {
