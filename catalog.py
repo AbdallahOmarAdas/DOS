@@ -40,6 +40,21 @@ def querySearch(topic):
 
     return jsonify(user_list)
 
-
+@app.route('/update/<itemNumber>')
+def queryUpdate(itemNumber):
+    cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
+    conn.commit()
+    cursor.execute("SELECT title, quantity, price FROM book WHERE id = ?", (itemNumber,))
+    row = cursor.fetchone()
+    print(row)
+    if row:
+        book_data = {
+            "title": row[0],
+            "quantity": row[1],
+            "price": row[2]
+        }
+        return jsonify(book_data)
+    else:
+        return jsonify({"error": "book not found"}, 404)
 if __name__ == '__main__':
     app.run(debug=True)
