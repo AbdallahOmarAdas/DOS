@@ -30,7 +30,7 @@ def querySearch(topic):
     rows = cursor.fetchall()
     print(rows)
     user_list = []
-    if rows == 0:
+    if len(rows) == 0:
         resource = jsonify({"error": "there is no books belong this topic"}, 404)
         resource.status_code = 404
         return resource
@@ -42,7 +42,7 @@ def querySearch(topic):
             }
             user_list.append(book_data)
 
-    return jsonify(user_list)
+        return jsonify(user_list)
 
 @app.route('/update/<itemNumber>')
 def queryUpdate(itemNumber):

@@ -12,7 +12,6 @@ def queryPurchase(itemNumber):
     api_url = 'http://localhost:5000/info/'+itemNumber
     response = requests.get(api_url)
     if response.status_code == 200:
-        print("hhhhhhhhhhhhhhh")
         data = response.json()
         if data['quantity'] >= 1:
             cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
