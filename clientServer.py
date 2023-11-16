@@ -4,8 +4,8 @@ import requests
 
 app = Flask(__name__)
 
-catalogIpPort = "localhost:5000"
-orderIpPort = "localhost:5050"
+catalogIpPort = "172.17.0.4:5000"
+orderIpPort = "172.17.0.3:5050"
 
 
 @app.route('/client/info/<itemNumber>')
@@ -73,4 +73,4 @@ def clientPurchase(itemNumber):
 
 
 if __name__ == '__main__':
-    app.run('localhost', 5500, debug=True)
+    app.run('0.0.0.0', 5500, debug=True)

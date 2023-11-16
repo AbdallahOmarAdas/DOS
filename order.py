@@ -9,12 +9,12 @@ cursor = conn.cursor()
 
 @app.route('/purchase/<itemNumber>', methods=['PUT'])
 def queryPurchase(itemNumber):
-    api_url = 'http://localhost:5000/info/'+itemNumber
+    api_url = 'http://172.17.0.4:5000/info/'+itemNumber
     response = requests.get(api_url)
     if response.status_code == 200:
         data = response.json()
         if data['quantity'] >= 1:
-            api_url = 'http://localhost:5000/update/' + itemNumber
+            api_url = 'http://172.17.0.4:5000/update/' + itemNumber
             response = requests.put(api_url)
             print(response.text)
             return response.json()
@@ -33,4 +33,4 @@ def queryPurchase(itemNumber):
 
 
 if __name__ == '__main__':
-    app.run('localhost', 5050, debug=True)
+    app.run('0.0.0.0', 5050, debug=True)

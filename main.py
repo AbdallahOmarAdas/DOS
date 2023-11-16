@@ -26,8 +26,8 @@ if __name__ == '__main__':
     # cursor.execute("INSERT INTO book  VALUES (2,'RPCs for Noobs','distributed systems',40,40)")
     # cursor.execute("INSERT INTO book VALUES (3,'Xen and the Art of Surviving Undergraduate School','undergraduate school',30,30)")
     # cursor.execute("INSERT INTO book VALUES (4,'Cooking for the Impatient Undergrad','undergraduate school',40,40)")
-    # cursor.execute("UPDATE book set quantity=30 WHERE id = ? ", (2,))
-    # conn.commit()
+    cursor.execute("UPDATE book set quantity=0 WHERE id = ? ", (2,))
+    conn.commit()
     cursor.execute("SELECT * FROM book")
     data = cursor.fetchall()
     for row in data:
