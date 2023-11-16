@@ -1,0 +1,84 @@
+http://172.17.0.4:5000/search/distributed systems
+[
+  {
+    "id": 1,
+    "title": "How to get a good grade in DOS in 40 minutes a day"
+  },
+  {
+    "id": 2,
+    "title": "RPCs for Noobs"
+  }
+]
+
+http://172.17.0.4:5000/search/undergraduate school
+[
+  {
+    "id": 3,
+    "title": "Xen and the Art of Surviving Undergraduate School"
+  },
+  {
+    "id": 4,
+    "title": "Cooking for the Impatient Undergrad"
+  }
+]
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 12,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 19,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/info/3
+{
+  "price": 30,
+  "quantity": 29,
+  "title": "Xen and the Art of Surviving Undergraduate School"
+}
+
+http://172.17.0.4:5000/info/4
+{
+  "price": 40,
+  "quantity": 40,
+  "title": "Cooking for the Impatient Undergrad"
+}
+
+({'error': 'Failed to fetch data from the API'}, 500)
+http://172.17.0.3:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 11,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 19,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 0,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.3:5050/purchase/2
+{
+  "error": "can not purchase this book because it out of stock."
+}
+
