@@ -15,7 +15,8 @@ catalogIpPort = "172.17.0.4:5000"
 orderIpPort = "172.17.0.3:5050"
 
 bookCache = []
-Book("How to get a good grade in DOS in 40 minutes a day", 30, 10, 1)
+topicCache = {}
+
 @app.route('/client/info/<itemNumber>')
 def clientInfo(itemNumber):
     for book in bookCache:
@@ -50,12 +51,17 @@ def clientInfo(itemNumber):
 
 @app.route('/client/search/<topic>')
 def clientSearch(topic):
+    if topic in topicCache:
+        print("from topic cache")
+        return jsonify(topicCache[topic])
     api_url = 'http://'+catalogIpPort+'/search/'+topic
     response = requests.get(api_url)
     if response.status_code == 200:
         with open("logFile.txt", "a") as file:
             file.write(api_url+"\n")
             file.write(response.text+"\n")
+        books_data = response.json()
+        topicCache[topic] = books_data
         return response.json()
     elif response.status_code == 404:
         resource = jsonify({"error": "there is no books belong this topic"}, 404)
@@ -72,17 +78,16 @@ def clientSearch(topic):
 
 @app.route('/client/purchase/<itemNumber>', methods=['PUT'])
 def clientPurchase(itemNumber):
-    for book in bookCache:
-        if book.id == int(itemNumber):
-            print("remove from cache")
-            bookCache.remove(book)
-            # remove the book from cache to update the data in cache in the next Search by Id we will add this book to cache with the updated data
     api_url = 'http://'+orderIpPort+'/purchase/'+itemNumber
     response = requests.put(api_url)
     if response.status_code == 200:
         with open("logFile.txt", "a") as file:
             file.write(api_url+"\n")
             file.write(response.text+"\n")
+        for book in bookCache:
+            if book.id == int(itemNumber):
+                print("remove from cache")
+                bookCache.remove(book)# remove the book from cache to update the data in cache in the next Search by Id we will add this book to cache with the updated data
         return response.json()
     elif response.status_code == 404:
         resource = jsonify({"error": "book not found"}, 404)

@@ -256,3 +256,23 @@ http://172.17.0.4:5000/search/distributed systems
   }
 ]
 
+http://172.17.0.4:5000/search/distributed systens
+[
+  {
+    "error": "there is no books belong this topic"
+  },
+  404
+]
+
+http://172.17.0.4:5000/search/distributed systems
+[
+  {
+    "id": 1,
+    "title": "How to get a good grade in DOS in 40 minutes a day"
+  },
+  {
+    "id": 2,
+    "title": "RPCs for Noobs"
+  }
+]
+
