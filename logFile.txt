@@ -82,3 +82,177 @@ http://172.17.0.3:5050/purchase/2
   "error": "can not purchase this book because it out of stock."
 }
 
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 11,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/search/distributed systems
+[
+  {
+    "id": 1,
+    "title": "How to get a good grade in DOS in 40 minutes a day"
+  },
+  {
+    "id": 2,
+    "title": "RPCs for Noobs"
+  }
+]
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 11,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.3:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 0,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/search/1
+[
+  {
+    "error": "there is no books belong this topic"
+  },
+  404
+]
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 10,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 0,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 0,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 0,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.3:5050/purchase/2
+{
+  "error": "can not purchase this book because it out of stock."
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 20,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.3:5050/purchase/2
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 19,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/search/distribution systems
+[
+  {
+    "error": "there is no books belong this topic"
+  },
+  404
+]
+
+http://172.17.0.4:5000/search/distributed systems
+[
+  {
+    "id": 1,
+    "title": "How to get a good grade in DOS in 40 minutes a day"
+  },
+  {
+    "id": 2,
+    "title": "RPCs for Noobs"
+  }
+]
+
