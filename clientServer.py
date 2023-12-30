@@ -12,19 +12,32 @@ class Book:
 app = Flask(__name__)
 
 catalogIpPort = "172.17.0.4:5000"
+catalog2IpPort = "172.17.0.6:5000"
 orderIpPort = "172.17.0.3:5050"
+order2IpPort = "172.17.0.5:5050"
 
 bookCache = []
 topicCache = {}
 
+lastCatalogServerUsed = 1
+lastOrderServerUsed = 1
+
+
 @app.route('/client/info/<itemNumber>')
 def clientInfo(itemNumber):
+    global lastCatalogServerUsed
+
     for book in bookCache:
         if book.id == int(itemNumber):
             print("from cache")
             return jsonify(title=book.title, price=book.price, quantity=book.quantity, id=book.id)
+    if lastCatalogServerUsed == 1:
+        lastCatalogServerUsed = 2
+        api_url = 'http://' + catalogIpPort + '/info/' + itemNumber
+    else:
+        lastCatalogServerUsed = 1
+        api_url = 'http://' + catalog2IpPort + '/info/' + itemNumber
 
-    api_url = 'http://'+catalogIpPort+'/info/'+itemNumber
     response = requests.get(api_url)
     if response.status_code == 200:
         with open("logFile.txt", "a") as file:
@@ -51,10 +64,18 @@ def clientInfo(itemNumber):
 
 @app.route('/client/search/<topic>')
 def clientSearch(topic):
+    global lastCatalogServerUsed
     if topic in topicCache:
         print("from topic cache")
         return jsonify(topicCache[topic])
-    api_url = 'http://'+catalogIpPort+'/search/'+topic
+
+    if lastCatalogServerUsed == 1:
+        lastCatalogServerUsed = 2
+        api_url = 'http://'+catalogIpPort+'/search/'+topic
+    else:
+        lastCatalogServerUsed = 1
+        api_url = 'http://' + catalog2IpPort + '/search/' + topic
+
     response = requests.get(api_url)
     if response.status_code == 200:
         with open("logFile.txt", "a") as file:
@@ -78,7 +99,13 @@ def clientSearch(topic):
 
 @app.route('/client/purchase/<itemNumber>', methods=['PUT'])
 def clientPurchase(itemNumber):
-    api_url = 'http://'+orderIpPort+'/purchase/'+itemNumber
+    global lastOrderServerUsed
+    if lastOrderServerUsed == 1:#here we uses the round-robin algo for load balancing
+        lastOrderServerUsed = 2
+        api_url = 'http://'+orderIpPort+'/purchase/'+itemNumber
+    else:
+        lastOrderServerUsed = 1
+        api_url = 'http://' + order2IpPort + '/purchase/' + itemNumber
     response = requests.put(api_url)
     if response.status_code == 200:
         with open("logFile.txt", "a") as file:
