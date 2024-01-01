@@ -1,10 +1,12 @@
 from flask import Flask,Response, jsonify
 import sqlite3
+import requests
 
 app = Flask(__name__)
 conn = sqlite3.connect("my_database.db", check_same_thread=False)
 cursor = conn.cursor()
 
+second_catalog_server = 'http://172.17.0.6:5000'
 
 @app.route('/info/<itemNumber>')
 def queryInfo(itemNumber):
@@ -53,6 +55,9 @@ def queryUpdate(itemNumber):
     cursor.execute("SELECT title, quantity, price FROM book WHERE id = ?", (itemNumber,))
     row = cursor.fetchone()
     if row[1] >= 1:
+        api_url = second_catalog_server + '/dbUpdate/' + itemNumber
+        response = requests.put(api_url)
+        print(response.text)
         cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
         conn.commit()
         print("{'msg': 'The book was purchased successfully'}")
@@ -62,6 +67,14 @@ def queryUpdate(itemNumber):
         print("{'error': 'can not purchase this book because it out of stock.'}")
         return jsonify(
             {'error': 'can not purchase this book because it out of stock.'})
+
+
+@app.route('/dbUpdate/<itemNumber>', methods=['PUT'])
+def dbUpdate(itemNumber):
+    cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
+    conn.commit()
+    return jsonify(
+            {'msg': 'done  updated second Database successfully'})
 
 
 if __name__ == '__main__':

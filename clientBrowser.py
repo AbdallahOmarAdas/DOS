@@ -8,7 +8,7 @@ conn = sqlite3.connect("my_database.db", check_same_thread=False)
 cursor = conn.cursor()
 
 
-clientIpPort = "localhost:5500"#input("Enter the IP:Port for the Front-end Server Ex:localhost:5500\n")
+clientIpPort = "localhost:5500" #input("Enter the IP:Port for the Front-end Server Ex:localhost:5500\n")
 while 1:
     # Performs a request towards the ClientServer based on the Input
     UserInput = input("Enter the number of Operation:\n 1 --> Search by Topic \n 2--> Search by Id \n 3-->Purchase \n 4--> Exit \n")

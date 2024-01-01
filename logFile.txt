@@ -327,3 +327,219 @@ http://172.17.0.3:5050/purchase/3
   "msg": "The book was purchased successfully"
 }
 
+http://172.17.0.4:5000/search/distributed systems
+[
+  {
+    "id": 1,
+    "title": "How to get a good grade in DOS in 40 minutes a day"
+  },
+  {
+    "id": 2,
+    "title": "RPCs for Noobs"
+  }
+]
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 8,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+({'error': 'Failed to fetch data from the API'}, 500)
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 19,
+  "title": "RPCs for Noobs"
+}
+
+({'error': 'Failed to fetch data from the API'}, 500)
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 19,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 8,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+({'error': 'Failed to fetch data from the API'}, 500)
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 8,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 8,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+({'error': 'Failed to fetch data from the API'}, 500)
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 8,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+({'error': 'Failed to fetch data from the API'}, 500)
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 19,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.6:5000/info/3
+{
+  "price": 30,
+  "quantity": 26,
+  "title": "Xen and the Art of Surviving Undergraduate School"
+}
+
+http://172.17.0.4:5000/search/distributed systems
+[
+  {
+    "id": 1,
+    "title": "How to get a good grade in DOS in 40 minutes a day"
+  },
+  {
+    "id": 2,
+    "title": "RPCs for Noobs"
+  }
+]
+
+http://172.17.0.6:5000/info/1
+{
+  "price": 30,
+  "quantity": 20,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 19,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.4:5000/search/distributed systems
+[
+  {
+    "id": 1,
+    "title": "How to get a good grade in DOS in 40 minutes a day"
+  },
+  {
+    "id": 2,
+    "title": "RPCs for Noobs"
+  }
+]
+
+http://172.17.0.6:5000/info/1
+{
+  "price": 30,
+  "quantity": 20,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 7,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.3:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.6:5000/info/1
+{
+  "price": 30,
+  "quantity": 18,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.5:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 5,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 20,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.3:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.6:5000/info/1
+{
+  "price": 30,
+  "quantity": 19,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 19,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.3:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.6:5000/info/1
+{
+  "price": 30,
+  "quantity": 18,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.3:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/1
+{
+  "price": 30,
+  "quantity": 17,
+  "title": "How to get a good grade in DOS in 40 minutes a day"
+}
+
+http://172.17.0.5:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.3:5050/purchase/1
+{
+  "msg": "The book was purchased successfully"
+}
+

@@ -3,8 +3,6 @@ import sqlite3
 import requests
 
 app = Flask(__name__)
-conn = sqlite3.connect("my_database.db", check_same_thread=False)
-cursor = conn.cursor()
 
 catalog = 'http://172.17.0.4:5000'
 catalog2 = 'http://172.17.0.6:5000'

@@ -15,18 +15,21 @@ if __name__ == '__main__':
     print_hi('PyCharm')
     conn = sqlite3.connect("my_database.db")
     cursor = conn.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS book (
-                        id INTEGER PRIMARY KEY,
-                        title TEXT,
-                        topic TEXT,
-                        quantity INTEGER,
-                        price INTEGER
-                     )''')
+    # cursor.execute('''CREATE TABLE IF NOT EXISTS book (
+    #                     id INTEGER PRIMARY KEY,
+    #                     title TEXT,
+    #                     topic TEXT,
+    #                     quantity INTEGER,
+    #                     price INTEGER
+    #                  )''')
     # cursor.execute("INSERT INTO book  VALUES (1,'How to get a good grade in DOS in 40 minutes a day','distributed systems',20,30)")
     # cursor.execute("INSERT INTO book  VALUES (2,'RPCs for Noobs','distributed systems',40,40)")
     # cursor.execute("INSERT INTO book VALUES (3,'Xen and the Art of Surviving Undergraduate School','undergraduate school',30,30)")
     # cursor.execute("INSERT INTO book VALUES (4,'Cooking for the Impatient Undergrad','undergraduate school',40,40)")
-    cursor.execute("UPDATE book set quantity=20 WHERE id = ? ", (2,))
+    cursor.execute("UPDATE book set quantity=20 WHERE id = ? ", (1,))
+    cursor.execute("UPDATE book set quantity=40 WHERE id = ? ", (2,))
+    cursor.execute("UPDATE book set quantity=30 WHERE id = ? ", (3,))
+    cursor.execute("UPDATE book set quantity=40 WHERE id = ? ", (4,))
     conn.commit()
     cursor.execute("SELECT * FROM book")
     data = cursor.fetchall()
