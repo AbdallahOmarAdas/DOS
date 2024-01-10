@@ -5,15 +5,10 @@
 
 import sqlite3
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    conn = sqlite3.connect("my_database.db")
+    conn = sqlite3.connect("my_database2.db")
     cursor = conn.cursor()
     # cursor.execute('''CREATE TABLE IF NOT EXISTS book (
     #                     id INTEGER PRIMARY KEY,
@@ -26,10 +21,14 @@ if __name__ == '__main__':
     # cursor.execute("INSERT INTO book  VALUES (2,'RPCs for Noobs','distributed systems',40,40)")
     # cursor.execute("INSERT INTO book VALUES (3,'Xen and the Art of Surviving Undergraduate School','undergraduate school',30,30)")
     # cursor.execute("INSERT INTO book VALUES (4,'Cooking for the Impatient Undergrad','undergraduate school',40,40)")
-    cursor.execute("UPDATE book set quantity=20 WHERE id = ? ", (1,))
-    cursor.execute("UPDATE book set quantity=40 WHERE id = ? ", (2,))
-    cursor.execute("UPDATE book set quantity=30 WHERE id = ? ", (3,))
-    cursor.execute("UPDATE book set quantity=40 WHERE id = ? ", (4,))
+    # cursor.execute("UPDATE book set quantity=20 WHERE id = ? ", (1,))
+    # cursor.execute("UPDATE book set quantity=40 WHERE id = ? ", (2,))
+    # cursor.execute("UPDATE book set quantity=30 WHERE id = ? ", (3,))
+    # cursor.execute("UPDATE book set quantity=40 WHERE id = ? ", (4,))
+
+    cursor.execute("INSERT INTO book  VALUES (5,'How to finish Project 3 on time','distributed systems',30,25)")
+    cursor.execute("INSERT INTO book VALUES (6,'Why theory classes are so hard','undergraduate school',20,30)")
+    cursor.execute("INSERT INTO book VALUES (7,'Spring in the Pioneer Valley','undergraduate school',10,30)")
     conn.commit()
     cursor.execute("SELECT * FROM book")
     data = cursor.fetchall()
