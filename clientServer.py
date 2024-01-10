@@ -12,9 +12,9 @@ class Book:
 app = Flask(__name__)
 
 catalogIpPort = "172.17.0.4:5000"
-catalog2IpPort = "172.17.0.6:5000"
+catalog2IpPort = "172.17.0.5:5000"
 orderIpPort = "172.17.0.3:5050"
-order2IpPort = "172.17.0.5:5050"
+order2IpPort = "172.17.0.6:5050"
 
 bookCache = []
 topicCache = {}
@@ -121,6 +121,32 @@ def clientPurchase(itemNumber):
         resource.status_code = 404
         print(response.text)
         return resource
+    else:
+        with open("logFile.txt", "a") as file:
+            file.write("({'error': 'Failed to fetch data from the API'}, 500)\n")
+        return jsonify({'error': 'Failed to fetch data from the API'}, 500)
+
+
+@app.route('/Admin/AddOneToStock/<itemNumber>', methods=['PUT'])
+def AdminAddOneToStock(itemNumber):  # this EndPoint for add one book to the stock
+    global lastCatalogServerUsed
+    if lastCatalogServerUsed == 1:  # for balance between two catalog servers
+        lastCatalogServerUsed = 2
+        api_url = 'http://'+catalogIpPort+'/AddOneToStock/'+itemNumber
+    else:
+        lastCatalogServerUsed = 1
+        api_url = 'http://' + catalog2IpPort + '/AddOneToStock/' + itemNumber
+
+    response = requests.put(api_url)
+    if response.status_code == 200:
+        with open("logFile.txt", "a") as file:
+            file.write(api_url+"\n")
+            file.write(response.text+"\n")
+        for book in bookCache:  # Search for the book in the catch
+            if book.id == int(itemNumber):
+                print("remove from cache")
+                bookCache.remove(book)# remove the book from cache to update the data in cache in the next Search by Id we will add this book to cache with the updated data
+        return response.json()
     else:
         with open("logFile.txt", "a") as file:
             file.write("({'error': 'Failed to fetch data from the API'}, 500)\n")

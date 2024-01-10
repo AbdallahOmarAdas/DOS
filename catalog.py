@@ -6,7 +6,7 @@ app = Flask(__name__)
 conn = sqlite3.connect("my_database.db", check_same_thread=False)
 cursor = conn.cursor()
 
-second_catalog_server = 'http://172.17.0.6:5000'
+second_catalog_server = 'http://172.17.0.5:5000'
 
 @app.route('/info/<itemNumber>')
 def queryInfo(itemNumber):
@@ -55,7 +55,7 @@ def queryUpdate(itemNumber):
     cursor.execute("SELECT title, quantity, price FROM book WHERE id = ?", (itemNumber,))
     row = cursor.fetchone()
     if row[1] >= 1:
-        api_url = second_catalog_server + '/dbUpdate/' + itemNumber
+        api_url = second_catalog_server + '/dbUpdate/Subtract/' + itemNumber
         response = requests.put(api_url)
         print(response.text)
         cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
@@ -69,13 +69,28 @@ def queryUpdate(itemNumber):
             {'error': 'can not purchase this book because it out of stock.'})
 
 
-@app.route('/dbUpdate/<itemNumber>', methods=['PUT'])
-def dbUpdate(itemNumber):
-    cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
+@app.route('/dbUpdate/<operation>/<itemNumber>', methods=['PUT'])
+def dbUpdate(operation, itemNumber):
+    if operation == "Add":
+        cursor.execute("UPDATE book set quantity=quantity+1 WHERE id = ? ", (itemNumber,))
+    else:
+        cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
     conn.commit()
     return jsonify(
             {'msg': 'done  updated second Database successfully'})
 
 
+@app.route('/AddOneToStock/<itemNumber>', methods=['PUT'])
+def queryAddOneToStock(itemNumber):
+    api_url = second_catalog_server + '/dbUpdate/Add/' + itemNumber
+    response = requests.put(api_url)
+    print(response.text)
+    cursor.execute("UPDATE book set quantity=quantity+1 WHERE id = ? ", (itemNumber,))
+    conn.commit()
+    print("{'msg': 'A book has been added successfully'}")
+    return jsonify(
+        {'msg': 'A book has been added successfully'})
+
+
 if __name__ == '__main__':
-    app.run("0.0.0.0",5000,debug=True)
+    app.run("0.0.0.0", 5000, debug=True)

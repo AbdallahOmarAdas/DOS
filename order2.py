@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 
 catalog = 'http://172.17.0.4:5000'
-catalog2 = 'http://172.17.0.6:5000'
+catalog2 = 'http://172.17.0.5:5000'
 
 lastCatalogServerUsed = 1
 

@@ -11,7 +11,7 @@ cursor = conn.cursor()
 clientIpPort = "localhost:5500" #input("Enter the IP:Port for the Front-end Server Ex:localhost:5500\n")
 while 1:
     # Performs a request towards the ClientServer based on the Input
-    UserInput = input("Enter the number of Operation:\n 1 --> Search by Topic \n 2--> Search by Id \n 3-->Purchase \n 4--> Exit \n")
+    UserInput = input("Enter the number of Operation:\n 1 --> Search by Topic \n 2--> Search by Id \n 3-->Purchase \n 4--> Add one book to stock  \n 5--> Exit \n")
     if UserInput == "1":
         topic = input("Enter Topic name\n")
         response = requests.get("http://"+clientIpPort + "/client/search/"+topic)
@@ -28,6 +28,11 @@ while 1:
         print(response.text)
 
     elif UserInput == "4":
+        ID = input("Enter Id of book\n")
+        response = requests.put("http://"+clientIpPort + "/Admin/AddOneToStock/"+ID)
+        print(response.text)
+
+    elif UserInput == "5":
         break
 
     else:
