@@ -14,12 +14,14 @@ lastCatalogServerUsed = 1
 def queryPurchase(itemNumber):
     global lastCatalogServerUsed
     base_api_url = ''
-    if lastCatalogServerUsed == 1:
+    if lastCatalogServerUsed == 1:   # round-robin implementation
         lastCatalogServerUsed = 2
         base_api_url = catalog
+        print("queryPurchase directed to catalog1 server")
     else:
         lastCatalogServerUsed = 1
         base_api_url = catalog2
+        print("queryPurchase directed to catalog2 server")
     api_url = base_api_url+'/info/'+itemNumber
     response = requests.get(api_url)
     if response.status_code == 200:

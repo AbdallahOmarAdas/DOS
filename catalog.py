@@ -56,8 +56,9 @@ def queryUpdate(itemNumber):
     row = cursor.fetchone()
     if row[1] >= 1:
         api_url = second_catalog_server + '/dbUpdate/Subtract/' + itemNumber
+        print('send queryUpdate(purchase) to the second server')
         response = requests.put(api_url)
-        print(response.text)
+        print("second server response: " + response.text)
         cursor.execute("UPDATE book set quantity=quantity-1 WHERE id = ? ", (itemNumber,))
         conn.commit()
         print("{'msg': 'The book was purchased successfully'}")
@@ -70,7 +71,7 @@ def queryUpdate(itemNumber):
 
 
 @app.route('/dbUpdate/<operation>/<itemNumber>', methods=['PUT'])
-def dbUpdate(operation, itemNumber):
+def dbUpdate(operation, itemNumber):   # this endpoint for database consistency
     if operation == "Add":
         cursor.execute("UPDATE book set quantity=quantity+1 WHERE id = ? ", (itemNumber,))
     else:
@@ -84,7 +85,8 @@ def dbUpdate(operation, itemNumber):
 def queryAddOneToStock(itemNumber):
     api_url = second_catalog_server + '/dbUpdate/Add/' + itemNumber
     response = requests.put(api_url)
-    print(response.text)
+    print('send queryAddOneToStock to the second server')
+    print("second server response: " + response.text)
     cursor.execute("UPDATE book set quantity=quantity+1 WHERE id = ? ", (itemNumber,))
     conn.commit()
     print("{'msg': 'A book has been added successfully'}")
