@@ -819,3 +819,106 @@ http://172.17.0.5:5000/info/2
   "title": "RPCs for Noobs"
 }
 
+http://172.17.0.3:5050/purchase/2
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/2
+{
+  "price": 40,
+  "quantity": 39,
+  "title": "RPCs for Noobs"
+}
+
+http://172.17.0.5:5000/info/5
+{
+  "price": 25,
+  "quantity": 30,
+  "title": "How to finish Project 3 on time"
+}
+
+http://172.17.0.6:5050/purchase/5
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/5
+{
+  "price": 25,
+  "quantity": 29,
+  "title": "How to finish Project 3 on time"
+}
+
+http://172.17.0.3:5050/purchase/5
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.5:5000/info/5
+{
+  "price": 25,
+  "quantity": 28,
+  "title": "How to finish Project 3 on time"
+}
+
+http://172.17.0.4:5000/info/6
+{
+  "price": 30,
+  "quantity": 20,
+  "title": "Why theory classes are so hard"
+}
+
+http://172.17.0.5:5000/AddOneToStock/6
+{
+  "msg": "A book has been added successfully"
+}
+
+http://172.17.0.4:5000/info/6
+{
+  "price": 30,
+  "quantity": 21,
+  "title": "Why theory classes are so hard"
+}
+
+http://172.17.0.4:5000/AddOneToStock/6
+{
+  "msg": "A book has been added successfully"
+}
+
+http://172.17.0.3:5050/purchase/6
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.5:5000/info/6
+{
+  "price": 30,
+  "quantity": 21,
+  "title": "Why theory classes are so hard"
+}
+
+http://172.17.0.6:5050/purchase/6
+{
+  "msg": "The book was purchased successfully"
+}
+
+http://172.17.0.4:5000/info/6
+{
+  "price": 30,
+  "quantity": 20,
+  "title": "Why theory classes are so hard"
+}
+
+http://172.17.0.5:5000/AddOneToStock/6
+{
+  "msg": "A book has been added successfully"
+}
+
+http://172.17.0.4:5000/info/6
+{
+  "price": 30,
+  "quantity": 21,
+  "title": "Why theory classes are so hard"
+}
+

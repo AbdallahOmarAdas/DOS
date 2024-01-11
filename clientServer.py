@@ -159,7 +159,7 @@ def AdminAddOneToStock(itemNumber):  # this EndPoint for add one book to the sto
     else:
         lastCatalogServerUsed = 1
         api_url = 'http://' + catalog2IpPort + '/AddOneToStock/' + itemNumber
-        print('Add One To Stock operation on catalog1 server')
+        print('Add One To Stock operation on catalog2 server')
 
     response = requests.put(api_url)
     if response.status_code == 200:
